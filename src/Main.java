@@ -19,6 +19,7 @@ public class Main {
 
             response = scan.nextInt();
 
+
             switch (response) {
                 case 1 -> robocop.robotOn();
                 case 2 -> robocop.robotOff();
@@ -26,6 +27,7 @@ public class Main {
                 case 4 -> {
 
                     do {
+                        robocop.energyCheck();
 
                         robocop.moveRobot(userCommand);
 
