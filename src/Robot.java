@@ -26,8 +26,9 @@ public class Robot {
     1. Turn on the robot.
     2. Turn off the robot.
     3. Charge the robot.
-    4. Move the robot.
-    5. Close the application.
+    4. Check the energy level.
+    5. Move the robot.
+    6. Close the application.
     """);
 
     }
@@ -56,6 +57,9 @@ public class Robot {
                     case "Jump":
                         energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
                         System.out.println("Robot jumped.");
+                    case "Energy":
+                        energyLevel = getEnergyLevel();
+                        System.out.println("Current energy level is: " + energyLevel);
                     default:
                 }
             } else {
@@ -88,6 +92,16 @@ public class Robot {
         System.out.println("Robot has been turned off.");
         System.out.println("");
 
+    }
+
+    public int energyStatus() {
+
+        if(energyLevel<30) {
+            System.out.println("Battery level is less than 30%, charge your robot.");
+        } else if(energyLevel<=5) {
+            System.out.println("Battery level is critical. Robot is turning off.");
+            robotOff();
+        }return energyLevel;
     }
 
 
