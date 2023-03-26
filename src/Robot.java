@@ -44,9 +44,9 @@ public class Robot {
     }
 
     public void moveRobot(String command) {
+        energyCheck();
 
             if (isOn) {
-
 
                 switch (command) {
                     case "Left foot":
@@ -70,11 +70,9 @@ public class Robot {
                         System.out.println("Robot jumped.");
                     default: energyLevel = getEnergyLevel();
                         System.out.println("Current energy level is: " + energyLevel);
-
                 }
             } else {
-                System.out.println("The robot is turning on.");
-                robotOn();
+                System.out.println("The robot must be on. Turn the robot on first.");
             }
         }
 
@@ -101,6 +99,7 @@ public class Robot {
         setOn(false);
         System.out.println("Robot has been turned off.");
         System.out.println("");
+
 
     }
 }

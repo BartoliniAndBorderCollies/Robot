@@ -9,13 +9,11 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         int response;
-        int energyLevel = robocop.getEnergyLevel();
         String userCommand = "";
 
         do{
 
             robocop.showMenu();
-
 
             response = scan.nextInt();
 
@@ -27,9 +25,10 @@ public class Main {
                 case 4 -> {
 
                     do {
-                        robocop.energyCheck();
+
 
                         robocop.moveRobot(userCommand);
+
 
                         System.out.println("""
                         To move the robot you must type the following commands:
