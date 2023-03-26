@@ -23,8 +23,7 @@ public class Main {
                 case 1 -> robocop.robotOn();
                 case 2 -> robocop.robotOff();
                 case 3 -> robocop.chargeRobot();
-                case 4 -> robocop.getEnergyLevel();
-                case 5 -> {
+                case 4 -> {
 
                     do {
 
@@ -37,7 +36,6 @@ public class Main {
                         LeftHand,
                         RightHand,
                         Jump,
-                        Energy,
                         Exit
                         """);
 
@@ -53,8 +51,6 @@ public class Main {
                             robocop.moveRobot("Right hand");
                         } else if (userCommand.equalsIgnoreCase("Jump")) {
                             robocop.moveRobot("Jump");
-                        }else if(userCommand.equalsIgnoreCase("Energy")) {
-                            robocop.energyStatus();
                         } else if(userCommand.equalsIgnoreCase("Exit")){
                             System.exit(0);
                         } else {
@@ -64,7 +60,7 @@ public class Main {
                 }
 
 
-                case 6 -> System.exit(0);
+                case 5 -> System.exit(0);
 
             }
         }while(true);

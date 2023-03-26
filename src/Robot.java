@@ -17,6 +17,17 @@ public class Robot {
         return energyLevel;
     }
 
+    public int energyCheck() {
+        if(energyLevel<=100){
+            System.out.println("Current energy level is: " + energyLevel);;
+        }else if(energyLevel<30) {
+            System.out.println("Battery level is less than 30%, charge your robot.");
+        } else if(energyLevel<=5) {
+            System.out.println("Battery level is critical. Robot is turning off.");
+            robotOff();
+        }return energyLevel;
+    }
+
 
     public void showMenu() {
 
@@ -26,9 +37,8 @@ public class Robot {
     1. Turn on the robot.
     2. Turn off the robot.
     3. Charge the robot.
-    4. Check the energy level.
-    5. Move the robot.
-    6. Close the application.
+    4. Move the robot.
+    5. Close the application.
     """);
 
     }
@@ -36,6 +46,7 @@ public class Robot {
     public void moveRobot(String command) {
 
             if (isOn) {
+                energycheck();
 
                 switch (command) {
                     case "Left foot":
@@ -57,10 +68,9 @@ public class Robot {
                     case "Jump":
                         energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
                         System.out.println("Robot jumped.");
-                    case "Energy":
-                        energyLevel = getEnergyLevel();
+                    default: energyLevel = getEnergyLevel();
                         System.out.println("Current energy level is: " + energyLevel);
-                    default:
+
                 }
             } else {
                 System.out.println("The robot is turning on.");
@@ -93,17 +103,4 @@ public class Robot {
         System.out.println("");
 
     }
-
-    public int energyStatus() {
-
-        if(energyLevel<30) {
-            System.out.println("Battery level is less than 30%, charge your robot.");
-        } else if(energyLevel<=5) {
-            System.out.println("Battery level is critical. Robot is turning off.");
-            robotOff();
-        }return energyLevel;
-    }
-
-
-
 }

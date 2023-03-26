@@ -3,11 +3,11 @@ public enum RobotMovement {
 
 
 
-    private final int stepLeftConsumption = 2;
-    private final int stepRightConsumption = 2;
-    private final int leftHandConsumption = 1;
-    private final int rightHandConsumption = 1;
-    private final int jumpConsumption = 5;
+    private final int stepLeftConsumption = 20  ;
+    private final int stepRightConsumption = 20;
+    private final int leftHandConsumption = 10;
+    private final int rightHandConsumption = 10;
+    private final int jumpConsumption = 35;
 
     public int getStepLeftConsumption() {
         return stepLeftConsumption;
