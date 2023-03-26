@@ -5,6 +5,7 @@ public class Robot {
     private boolean isOn;
     private String command;
 
+
     public void setOn(boolean on) {
         isOn = on;
     }
@@ -35,25 +36,50 @@ public class Robot {
 
     public void moveRobot(String command) {
 
-        if(isOn) {
-            switch(command){
-                case "Left feet": energyLevel = getEnergyLevel() - RobotMovement.STEP_LEFT.getStepLeftConsumption();
-                break;
-                case "Right feet": energyLevel = getEnergyLevel() - RobotMovement.STEP_RIGHT.getStepRightConsumption();
-                break;
-                case "Left hand": energyLevel = getEnergyLevel() - RobotMovement.LEFT_HANDE_MOVE.getLeftHandConsumption();
-                break;
-                case "Right hand": energyLevel = getEnergyLevel() - RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
-                break;
-                case "Jump": energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
-                default:
+
+            if (isOn) {
+
+                System.out.println("""
+                        To move the robot you must type the following commands:
+                        Left foot,
+                        Right foot,
+                        Left hand,
+                        Right hand,
+                        Jump
+                        """);
+
+
+                switch (command) {
+                    case "Left foot":
+                        energyLevel = getEnergyLevel() - RobotMovement.STEP_LEFT.getStepLeftConsumption();
+                        System.out.println("Robot moved his left foot.");
+                        break;
+                    case "Right foot":
+                        energyLevel = getEnergyLevel() - RobotMovement.STEP_RIGHT.getStepRightConsumption();
+                        System.out.println("Robot moved his right foot.");
+                        break;
+                    case "Left hand":
+                        energyLevel = getEnergyLevel() - RobotMovement.LEFT_HANDE_MOVE.getLeftHandConsumption();
+                        System.out.println("Robot moved his left hand.");
+                        break;
+                    case "Right hand":
+                        energyLevel = getEnergyLevel() - RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
+                        System.out.println("Robot moved his right hand.");
+                        break;
+                    case "Jump":
+                        energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
+                        System.out.println("Robot jumped.");
+                    default:
+                }
+            } else {
+                System.out.println("Robot is turning on");
+                System.out.println("");
+                robotOn();
+
             }
-        }else {
-            System.out.println("Turn robot on first.");
-            System.out.println("");
+
         }
 
-    }
 
     public void chargeRobot() {
         if(!isOn) {

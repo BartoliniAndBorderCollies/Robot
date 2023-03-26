@@ -9,7 +9,7 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         int response;
-        String command;
+        String command = "";
         do{
 
             robocop.showMenu();
@@ -22,29 +22,27 @@ public class Main {
                 case 2 -> robocop.robotOff();
                 case 3 -> robocop.chargeRobot();
                 case 4 -> {
-                    System.out.println("""
-                    To move the robot you must type the following commands:
-                    Left feet,
-                    Right feet,
-                    Left hand,
-                    Right hand,
-                    Jump
-                    """);
-                    command = scan.nextLine();
 
-                    if(command.equalsIgnoreCase("Left feet")) {
-                        robocop.moveRobot("Left feet");
-                    } else if (command.equalsIgnoreCase("Right feet")){
-                        robocop.moveRobot("Right feet");
-                    }else if(command.equalsIgnoreCase("Left hand")){
-                        robocop.moveRobot("Left hand");
-                    } else if (command.equalsIgnoreCase("Right hand")) {
-                        robocop.moveRobot("Right hand");
-                    } else if(command.equalsIgnoreCase("Jump")){
-                        robocop.moveRobot("Jump");
-                    } else {
-                        System.out.println("Unknown command.");
-                    }
+
+                    do {
+                        robocop.moveRobot(command);
+
+                        command = scan.next(); //TODO: dałem next bo mi przelatywał znów do kolejnej linii
+
+                        if (command.equalsIgnoreCase("Left feet")) {
+                            robocop.moveRobot("Left feet");
+                        } else if (command.equalsIgnoreCase("Right feet")) {
+                            robocop.moveRobot("Right feet");
+                        } else if (command.equalsIgnoreCase("Left hand")) {
+                            robocop.moveRobot("Left hand");
+                        } else if (command.equalsIgnoreCase("Right hand")) {
+                            robocop.moveRobot("Right hand");
+                        } else if (command.equalsIgnoreCase("Jump")) {
+                            robocop.moveRobot("Jump");
+                        } else {
+                            System.out.println("Unknown command.");
+                        }
+                    } while (true);
                 }
 
 
