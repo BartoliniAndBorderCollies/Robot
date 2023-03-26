@@ -48,34 +48,33 @@ public class Robot {
 
             if (isOn) {
 
+
                 switch (command) {
-                    case "Left foot":
+                    case "Left foot" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.STEP_LEFT.getStepLeftConsumption();
                         System.out.println("Robot moved his left foot.");
-                        break;
-                    case "Right foot":
+                    }
+                    case "Right foot" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.STEP_RIGHT.getStepRightConsumption();
                         System.out.println("Robot moved his right foot.");
-                        break;
-                    case "Left hand":
+                    }
+                    case "Left hand" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.LEFT_HANDE_MOVE.getLeftHandConsumption();
                         System.out.println("Robot moved his left hand.");
-                        break;
-                    case "Right hand":
+                    }
+                    case "Right hand" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
                         System.out.println("Robot moved his right hand.");
-                        break;
-                    case "Jump":
+                    }
+                    case "Jump" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
                         System.out.println("Robot jumped.");
-                    default: energyLevel = getEnergyLevel();
-                        System.out.println("Current energy level is: " + energyLevel);
+                    }
                 }
             } else {
                 System.out.println("The robot must be on. Turn the robot on first.");
             }
         }
-
 
     public void chargeRobot() {
         if(!isOn) {
@@ -86,20 +85,17 @@ public class Robot {
             System.out.println("Turn off the robot first.");
             System.out.println(" ");
         }
-
     }
 
     public void robotOn(){
         setOn(true);
         System.out.println("Robot is now on.");
         System.out.println("");
-
     }
+
     public void robotOff(){
         setOn(false);
         System.out.println("Robot has been turned off.");
         System.out.println("");
-
-
     }
 }

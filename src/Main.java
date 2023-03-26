@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
 
         Robot robocop = new Robot();
-
         Scanner scan = new Scanner(System.in);
         int response;
         String userCommand = "";
@@ -14,21 +13,13 @@ public class Main {
         do{
 
             robocop.showMenu();
-
             response = scan.nextInt();
-
 
             switch (response) {
                 case 1 -> robocop.robotOn();
                 case 2 -> robocop.robotOff();
                 case 3 -> robocop.chargeRobot();
                 case 4 -> {
-
-                    do {
-
-
-                        robocop.moveRobot(userCommand);
-
 
                         System.out.println("""
                         To move the robot you must type the following commands:
@@ -39,8 +30,8 @@ public class Main {
                         Jump,
                         Exit
                         """);
-
-                        userCommand = scan.next(); //TODO: dałem next bo mi przelatywał znów do kolejnej linii
+                    robocop.moveRobot(userCommand);
+                        userCommand = scan.next();
 
                         if (userCommand.equalsIgnoreCase("LeftFoot")) {
                             robocop.moveRobot("Left foot");
@@ -57,12 +48,8 @@ public class Main {
                         } else {
                             System.out.println("Unknown command.");
                         }
-                    } while (true);
                 }
-
-
                 case 5 -> System.exit(0);
-
             }
         }while(true);
     }
