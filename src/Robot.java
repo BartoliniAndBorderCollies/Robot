@@ -3,7 +3,6 @@ public class Robot {
     private int energyLevel = 100;
     private String robotName;
     private boolean isOn;
-    private String command;
 
 
     public void setOn(boolean on) {
@@ -33,21 +32,9 @@ public class Robot {
 
     }
 
-
     public void moveRobot(String command) {
 
-
             if (isOn) {
-
-                System.out.println("""
-                        To move the robot you must type the following commands:
-                        Left foot,
-                        Right foot,
-                        Left hand,
-                        Right hand,
-                        Jump
-                        """);
-
 
                 switch (command) {
                     case "Left foot":
@@ -72,12 +59,9 @@ public class Robot {
                     default:
                 }
             } else {
-                System.out.println("Robot is turning on");
-                System.out.println("");
+                System.out.println("The robot is turning on.");
                 robotOn();
-
             }
-
         }
 
 
@@ -99,12 +83,13 @@ public class Robot {
         System.out.println("");
 
     }
-
     public void robotOff(){
         setOn(false);
         System.out.println("Robot has been turned off.");
         System.out.println("");
 
     }
+
+
 
 }

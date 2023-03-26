@@ -9,7 +9,8 @@ public class Main {
 
         Scanner scan = new Scanner(System.in);
         int response;
-        String command = "";
+        String userCommand = "";
+
         do{
 
             robocop.showMenu();
@@ -25,20 +26,36 @@ public class Main {
 
 
                     do {
-                        robocop.moveRobot(command);
 
-                        command = scan.next(); //TODO: dałem next bo mi przelatywał znów do kolejnej linii
+                        robocop.moveRobot(userCommand);
 
-                        if (command.equalsIgnoreCase("Left feet")) {
-                            robocop.moveRobot("Left feet");
-                        } else if (command.equalsIgnoreCase("Right feet")) {
-                            robocop.moveRobot("Right feet");
-                        } else if (command.equalsIgnoreCase("Left hand")) {
+                        System.out.println("""
+                        To move the robot you must type the following commands:
+                        LeftFoot,
+                        RightFoot,
+                        LeftHand,
+                        RightHand,
+                        Jump,
+                        EnergyStatus,
+                        Exit
+                        """);
+
+                        userCommand = scan.next(); //TODO: dałem next bo mi przelatywał znów do kolejnej linii
+
+                        if (userCommand.equalsIgnoreCase("LeftFoot")) {
+                            robocop.moveRobot("Left foot");
+                        } else if (userCommand.equalsIgnoreCase("RightFoot")) {
+                            robocop.moveRobot("Right foot");
+                        } else if (userCommand.equalsIgnoreCase("LeftHand")) {
                             robocop.moveRobot("Left hand");
-                        } else if (command.equalsIgnoreCase("Right hand")) {
+                        } else if (userCommand.equalsIgnoreCase("RightHand")) {
                             robocop.moveRobot("Right hand");
-                        } else if (command.equalsIgnoreCase("Jump")) {
+                        } else if (userCommand.equalsIgnoreCase("Jump")) {
                             robocop.moveRobot("Jump");
+                        }else if(userCommand.equalsIgnoreCase("EnergyStatus")) {
+                            robocop.getEnergyLevel();
+                        } else if(userCommand.equalsIgnoreCase("Exit")){
+                            System.exit(0);
                         } else {
                             System.out.println("Unknown command.");
                         }
