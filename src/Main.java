@@ -10,11 +10,12 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         int response;
         String userCommand = "";
+        boolean repeat = true;
 
         do {
 
             robocop.showMenu();
-            robocop.energyCheck();
+            robocop.energyCheck();//TODO: dlaczego nie pojawia sie status baterii po drugim jumpie
 
             try {
 
@@ -50,18 +51,20 @@ public class Main {
                         } else if (userCommand.equalsIgnoreCase("Jump")) {
                             robocop.moveRobot("Jump");
                         } else if (userCommand.equalsIgnoreCase("Exit")) {
-                            System.exit(0);
+                            repeat = false; //TODO: jak zrobić, żeby zrobił go back to showMenu();
                         } else {
                             System.out.println("Unknown command.");
                         }
                     }
-                    case 5 -> System.exit(0);
+                    case 5  -> repeat = false; //TODO: nie wiem jak dodać tutaj komunikat.
+
+
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Number must be an integer.");
                 System.out.println("");
                 scan.nextLine();
             }
-        } while (true);
+        } while (repeat);
     }
 }
