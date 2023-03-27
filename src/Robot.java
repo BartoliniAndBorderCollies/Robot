@@ -4,7 +4,6 @@ public class Robot {
     private String robotName;
     private boolean isOn;
 
-
     public void setOn(boolean on) {
         isOn = on;
     }
@@ -17,7 +16,7 @@ public class Robot {
         return energyLevel;
     }
 
-    public int energyCheck() {
+    public void energyCheck() {
         if(energyLevel<=100 && energyLevel>30){
             System.out.println("Current energy level is: " + energyLevel + "%.");;
         }else if(energyLevel<30 && energyLevel>5) {
@@ -27,9 +26,8 @@ public class Robot {
         } else if(energyLevel<=5) {
             System.out.println("Battery level is critical. Robot is turning off.");
             robotOff();
-        }return energyLevel;
+        }
     }
-
 
     public void showMenu() {
 
@@ -46,7 +44,6 @@ public class Robot {
     }
 
     public void moveRobot(String command) {
-
 
             if (isOn) {
 
