@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,27 +11,32 @@ public class Main {
         int response;
         String userCommand = "";
 
-        do{
+        do {
 
             robocop.showMenu();
-            response = scan.nextInt();
+            robocop.energyCheck();
 
-            switch (response) {
-                case 1 -> robocop.robotOn();
-                case 2 -> robocop.robotOff();
-                case 3 -> robocop.chargeRobot();
-                case 4 -> {
+            try {
+
+                response = scan.nextInt();
+
+                switch (response) {
+                    case 1 -> robocop.robotOn();
+                    case 2 -> robocop.robotOff();
+                    case 3 -> robocop.chargeRobot();
+                    case 4 -> {
 
                         System.out.println("""
-                        To move the robot you must type the following commands:
-                        LeftFoot,
-                        RightFoot,
-                        LeftHand,
-                        RightHand,
-                        Jump,
-                        Exit
-                        """);
-                    robocop.moveRobot(userCommand);
+                                To move the robot you must type the following commands:
+                                LeftFoot,
+                                RightFoot,
+                                LeftHand,
+                                RightHand,
+                                Jump,
+                                Exit
+                                """);
+                        robocop.moveRobot(userCommand);
+
                         userCommand = scan.next();
 
                         if (userCommand.equalsIgnoreCase("LeftFoot")) {
@@ -43,14 +49,19 @@ public class Main {
                             robocop.moveRobot("Right hand");
                         } else if (userCommand.equalsIgnoreCase("Jump")) {
                             robocop.moveRobot("Jump");
-                        } else if(userCommand.equalsIgnoreCase("Exit")){
+                        } else if (userCommand.equalsIgnoreCase("Exit")) {
                             System.exit(0);
                         } else {
                             System.out.println("Unknown command.");
                         }
+                    }
+                    case 5 -> System.exit(0);
                 }
-                case 5 -> System.exit(0);
+            } catch (InputMismatchException e) {
+                System.out.println("Number must be an integer.");
+                System.out.println("");
+                scan.nextLine();
             }
-        }while(true);
+        } while (true);
     }
 }

@@ -19,9 +19,11 @@ public class Robot {
 
     public int energyCheck() {
         if(energyLevel<=100 && energyLevel>30){
-            System.out.println("Current energy level is: " + energyLevel);;
+            System.out.println("Current energy level is: " + energyLevel + "%.");;
         }else if(energyLevel<30 && energyLevel>5) {
-            System.out.println("Battery level is less than 30%, charge your robot.");
+            System.out.println("""
+                    Battery level is less than 30%, charge your robot.
+                    Current energy level is: """ + energyLevel + "%.");
         } else if(energyLevel<=5) {
             System.out.println("Battery level is critical. Robot is turning off.");
             robotOff();
@@ -44,10 +46,9 @@ public class Robot {
     }
 
     public void moveRobot(String command) {
-        energyCheck();
+
 
             if (isOn) {
-
 
                 switch (command) {
                     case "Left foot" -> {
