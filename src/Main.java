@@ -44,21 +44,19 @@ public class Main {
 
                     userCommand = scan.next();
 
-                    if (userCommand.equalsIgnoreCase("LeftFoot")) {
-                        robocop.moveRobot("Left foot");
-                    } else if (userCommand.equalsIgnoreCase("RightFoot")) {
-                        robocop.moveRobot("Right foot");
-                    } else if (userCommand.equalsIgnoreCase("LeftHand")) {
-                        robocop.moveRobot("Left hand");
-                    } else if (userCommand.equalsIgnoreCase("RightHand")) {
-                        robocop.moveRobot("Right hand");
-                    } else if (userCommand.equalsIgnoreCase("Jump")) {
-                        robocop.moveRobot("Jump");
-                    } else if (userCommand.equalsIgnoreCase("GoBack")) {
-                        System.out.println("Going back to menu.");
-                        System.out.println("");
-                    } else {
-                        System.out.println("Unknown command.");
+                    switch (userCommand.toLowerCase()) {
+
+                        case "leftfoot" -> robocop.moveRobot("Left foot");
+                        case "rightfoot" -> robocop.moveRobot("Right foot");
+                        case "lefthand" -> robocop.moveRobot("Left hand");
+                        case "righthand" -> robocop.moveRobot("Right hand");
+                        case "jump" -> robocop.moveRobot("Jump2");
+                        case "goback" ->
+                                System.out.println("""
+                                    Going back to menu.
+                                                                
+                                    """);
+                        default -> System.out.println("Unknown command.");
                     }
                 }
                 case 5 -> {

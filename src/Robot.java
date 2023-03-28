@@ -17,7 +17,7 @@ public class Robot {
     }
 
     public void energyCheck() {
-        if(energyLevel<=100 && energyLevel>30){
+        if(energyLevel<=100 && energyLevel>=30){
             System.out.println("Current energy level is: " + energyLevel + "%.");;
         }else if(energyLevel<30 && energyLevel>5) {
             System.out.println("""
@@ -64,7 +64,7 @@ public class Robot {
                         energyLevel = getEnergyLevel() - RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
                         System.out.println("Robot moved his right hand.");
                     }
-                    case "Jump" -> {
+                    case "Jump2" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
                         System.out.println("Robot jumped.");
                     }
