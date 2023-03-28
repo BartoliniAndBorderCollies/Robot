@@ -14,14 +14,17 @@ public class Robot {
 
 
     public void energyCheck() {
-        if (energyLevel <= 100 && energyLevel >= 30) {
-            System.out.println("Current energy level is: " + energyLevel + "%.");
-        } else if (energyLevel < 30 && energyLevel > 5) {
-            System.out.println("""
-                    Battery level is less than 30%, charge your robot.
-                    Current energy level is:""" + energyLevel + "%.");
-        } else if (energyLevel <= 5) {
-            System.out.println("Battery level is critical. Robot is turning off.");
+        System.out.println("Current energy level is: " + energyLevel + "%.");
+
+
+        if(energyLevel>100) {
+            throw new RuntimeException ("Unexpected error, energy level cannot be over 100%.");
+
+        } else if (energyLevel > 5) {
+            System.out.println("Battery level is less than 30%, charge your robot.");
+
+        } else {
+            System.out.println("Battery level is critical.");
             robotOff();
         }
     }
@@ -49,23 +52,23 @@ public class Robot {
 
         switch (command.toLowerCase()) {
             case "left foot" -> {
-                energyLevel = energyLevel - RobotMovement.STEP_LEFT.getStepLeftConsumption();
+                energyLevel -= RobotMovement.STEP_LEFT.getStepLeftConsumption();
                 System.out.println("Robot moved his left foot.\n");
             }
             case "right foot" -> {
-                energyLevel = energyLevel - RobotMovement.STEP_RIGHT.getStepRightConsumption();
+                energyLevel -= RobotMovement.STEP_RIGHT.getStepRightConsumption();
                 System.out.println("Robot moved his right foot.\n");
             }
             case "left hand" -> {
-                energyLevel = energyLevel - RobotMovement.LEFT_HANDE_MOVE.getLeftHandConsumption();
+                energyLevel -= RobotMovement.LEFT_HANDE_MOVE.getLeftHandConsumption();
                 System.out.println("Robot moved his left hand.\n");
             }
             case "right hand" -> {
-                energyLevel = energyLevel - RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
+                energyLevel -= RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
                 System.out.println("Robot moved his right hand.\n");
             }
             case "jump" -> {
-                energyLevel = energyLevel - RobotMovement.JUMP.getJumpConsumption();
+                energyLevel -= RobotMovement.JUMP.getJumpConsumption();
                 System.out.println("Robot jumped.\n");
             }
             default -> System.out.println("Unknown command.");
