@@ -47,27 +47,28 @@ public class Robot {
 
             if (isOn) {
 
-                switch (command) {
-                    case "Left foot" -> {
+                switch (command.toLowerCase()) {
+                    case "leftfoot" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.STEP_LEFT.getStepLeftConsumption();
                         System.out.println("Robot moved his left foot.");
                     }
-                    case "Right foot" -> {
+                    case "rightfoot" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.STEP_RIGHT.getStepRightConsumption();
                         System.out.println("Robot moved his right foot.");
                     }
-                    case "Left hand" -> {
+                    case "lefthand" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.LEFT_HANDE_MOVE.getLeftHandConsumption();
                         System.out.println("Robot moved his left hand.");
                     }
-                    case "Right hand" -> {
+                    case "righthand" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.RIGHT_HAND_MOVE.getRightHandConsumption();
                         System.out.println("Robot moved his right hand.");
                     }
-                    case "Jump2" -> {
+                    case "jump" -> {
                         energyLevel = getEnergyLevel() - RobotMovement.JUMP.getJumpConsumption();
                         System.out.println("Robot jumped.");
                     }
+                    default -> System.out.println("Unknown command.");
                 }
             } else {
                 System.out.println("The robot must be on. Turn the robot on first.");

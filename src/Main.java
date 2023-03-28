@@ -9,7 +9,7 @@ public class Main {
         Robot robocop = new Robot();
         Scanner scan = new Scanner(System.in);
         int response = 0;
-        String userCommand = "";
+        String command = "";
         boolean repeat = true;
 
         do {
@@ -19,6 +19,7 @@ public class Main {
 
             try {
                 response = scan.nextInt();
+                scan.nextLine();
             } catch (InputMismatchException e) {
                 System.out.println("Number must be an integer.");
                 System.out.println("");
@@ -40,23 +41,15 @@ public class Main {
                             Jump,
                             GoBack
                             """);
-                    robocop.moveRobot(userCommand);
 
-                    userCommand = scan.next();
-
-                    switch (userCommand.toLowerCase()) {
-
-                        case "leftfoot" -> robocop.moveRobot("Left foot");
-                        case "rightfoot" -> robocop.moveRobot("Right foot");
-                        case "lefthand" -> robocop.moveRobot("Left hand");
-                        case "righthand" -> robocop.moveRobot("Right hand");
-                        case "jump" -> robocop.moveRobot("Jump2");
-                        case "goback" ->
-                                System.out.println("""
-                                    Going back to menu.
-                                                                
-                                    """);
-                        default -> System.out.println("Unknown command.");
+                    command = scan.nextLine();
+                    if(command.equalsIgnoreCase("GoBack")) {
+                        System.out.println("""
+                                Returning to main menu.
+                                
+                                """);
+                    } else {
+                        robocop.moveRobot(command);
                     }
                 }
                 case 5 -> {
