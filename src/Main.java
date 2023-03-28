@@ -6,10 +6,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Robot robocop = new Robot();
+        Robot robocop = new Robot("Robocop");
         Scanner scan = new Scanner(System.in);
         int response = 0;
-        String command = "";
+        String command;
         boolean repeat = true;
 
         do {
@@ -19,12 +19,13 @@ public class Main {
 
             try {
                 response = scan.nextInt();
-                scan.nextLine();
+
             } catch (InputMismatchException e) {
                 System.out.println("Number must be an integer.");
-                System.out.println("");
-                scan.nextLine();
+                System.out.println();
+
             }
+            scan.nextLine();
 
             switch (response) {
                 case 1 -> robocop.robotOn();
@@ -34,20 +35,17 @@ public class Main {
 
                     System.out.println("""
                             To move the robot you must type the following commands:
-                            LeftFoot,
-                            RightFoot,
-                            LeftHand,
-                            RightHand,
+                            Left foot,
+                            Right foot,
+                            Left hand,
+                            Right hand,
                             Jump,
-                            GoBack
+                            Go back
                             """);
 
                     command = scan.nextLine();
-                    if(command.equalsIgnoreCase("GoBack")) {
-                        System.out.println("""
-                                Returning to main menu.
-                                
-                                """);
+                    if (command.equalsIgnoreCase("Go back")) {
+                        System.out.println("Returning to main menu.");
                     } else {
                         robocop.moveRobot(command);
                     }
