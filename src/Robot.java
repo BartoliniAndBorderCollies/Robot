@@ -2,7 +2,12 @@ public class Robot {
 
     private int energyLevel = 100;
     private String robotName;
-    private boolean isOn;
+    private boolean isOn = true;
+    private boolean isChargerCreate;
+
+    public void setChargerCreate(boolean chargerCreate) {
+        isChargerCreate = chargerCreate;
+    }
 
     public Robot(String robotName) {
         this.robotName = robotName;
@@ -12,35 +17,37 @@ public class Robot {
         isOn = on;
     }
 
-
     public void energyCheck() {
         System.out.println("Current energy level is: " + energyLevel + "%.");
 
-
-        if(energyLevel>100) {
-            throw new RuntimeException ("Unexpected error, energy level cannot be over 100%.");
-
-        } else if (energyLevel > 5) {
+        if (energyLevel > 100) {
+            throw new RuntimeException("Unexpected error, energy level cannot be over 100%.");
+        } else if (energyLevel > 30) {
+            System.out.println();
+        } else if (energyLevel > 5 && energyLevel < 30) {
             System.out.println("Battery level is less than 30%, charge your robot.");
-
         } else {
             System.out.println("Battery level is critical.");
             robotOff();
         }
+
     }
 
     public void showMenu() {
 
         System.out.println("""
+                                
                 Hello, welcome to Robot command center.
                 What do you want to do? Type the answer:
                 1. Turn on the robot.
                 2. Turn off the robot.
-                3. Charge the robot.
-                4. Move the robot.
-                5. Close the application.
+                3. Create a charger to be able to recharge battery.
+                4. Plug in the robot and start charging.
+                5. Move the robot.
+                6. Skip the turn.
+                7. Close the application.
+                                
                 """);
-
     }
 
     public void moveRobot(String command) {
@@ -75,25 +82,57 @@ public class Robot {
         }
     }
 
-    public void chargeRobot() {
-        if (isOn) {
-            System.out.println("Turn off the robot first.\n");
-            return;
+    public void charger() {
+        if (isChargerCreate) {
+            System.out.println("Charger already exist.");
+        } else {
+            System.out.println("Charger has been created.");
+            setChargerCreate(true);
         }
-        energyLevel = 100;
-        System.out.println("Robot has been fully charged.\n");
-        }
+    }
 
+    public void chargeRobot() {
+        checkIfOn();
+        if (isChargerCreate && !checkIfOn()) {
+            if (energyLevel < 100) {
+                System.out.println("Battery will be charged 10% each turn. ");
+                energyLevel += 10;
+            }
+            if (energyLevel >= 100) {
+                energyLevel = 100;
+                System.out.println("Battery is fully charged and cannot exceed 100%");
+            }
+        } else if (!isChargerCreate) {
+            System.out.println("You must create a charger first.");
+        }
+    }
+
+    public boolean checkIfOn() {
+        if (isOn) {
+            System.out.println("Turn off the robot first.");
+            return true;
+        }
+        return false;
+    }
 
     public void robotOn() {
-        setOn(true);
-        System.out.println("Robot is now on.");
-        System.out.println();
+        if (!checkIfOn()) {
+            setOn(true);
+            System.out.println("Robot is now on.");
+            System.out.println();
+        } else {
+            System.out.println("You have to unplug the robot from the charger.");
+        }
     }
 
     public void robotOff() {
         setOn(false);
         System.out.println("Robot has been turned off.");
         System.out.println();
+    }
+
+    public void skipTheTurn() {
+        chargeRobot();
+        System.out.println("Next turn is beginning.");
     }
 }

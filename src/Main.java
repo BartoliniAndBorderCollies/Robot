@@ -3,16 +3,19 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
 
         Robot robocop = new Robot("Robocop");
         Scanner scan = new Scanner(System.in);
         int response = 0;
+        int turn = 0;
         String command;
         boolean repeat = true;
 
         do {
+            turn++;
+
+            System.out.println("                                                              Turn: " + turn);
 
             robocop.showMenu();
             robocop.energyCheck();
@@ -30,8 +33,9 @@ public class Main {
             switch (response) {
                 case 1 -> robocop.robotOn();
                 case 2 -> robocop.robotOff();
-                case 3 -> robocop.chargeRobot();
-                case 4 -> {
+                case 3 -> robocop.charger();
+                case 4 -> robocop.chargeRobot();
+                case 5 -> {
 
                     System.out.println("""
                             To move the robot you must type the following commands:
@@ -50,7 +54,8 @@ public class Main {
                         robocop.moveRobot(command);
                     }
                 }
-                case 5 -> {
+                case 6 -> robocop.skipTheTurn();
+                case 7 -> {
                     System.out.println("Application is closing.");
                     repeat = false;
                 }
