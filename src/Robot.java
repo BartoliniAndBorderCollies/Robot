@@ -5,6 +5,12 @@ public class Robot {
     private boolean isOn = true;
     private boolean isChargerCreate;
 
+    private boolean isPlugged;
+
+    public void setPlugged(boolean plugged) {
+        isPlugged = plugged;
+    }
+
     public void setChargerCreate(boolean chargerCreate) {
         isChargerCreate = chargerCreate;
     }
@@ -43,9 +49,10 @@ public class Robot {
                 2. Turn off the robot.
                 3. Create a charger to be able to recharge battery.
                 4. Plug in the robot and start charging.
-                5. Move the robot.
-                6. Skip the turn.
-                7. Close the application.
+                5. Unplug the robot from the charger.
+                6. Move the robot.
+                7. Skip the turn.
+                8. Close the application.
                                 
                 """);
     }
@@ -91,10 +98,11 @@ public class Robot {
         }
     }
 
-    public void chargeRobot() {
+    public boolean chargeRobot() {
         checkIfOn();
         if (isChargerCreate && !checkIfOn()) {
             if (energyLevel < 100) {
+                setPlugged(true);
                 System.out.println("Battery will be charged 10% each turn. ");
                 energyLevel += 10;
             }
@@ -102,10 +110,19 @@ public class Robot {
                 energyLevel = 100;
                 System.out.println("Battery is fully charged and cannot exceed 100%");
             }
+            return true;
         } else if (!isChargerCreate) {
             System.out.println("You must create a charger first.");
         }
+        return false;
     }
+
+    public void unplugRobot() {
+        setPlugged(false);
+        System.out.println("Robot has been unplugged from the charger.");
+
+    }
+
 
     public boolean checkIfOn() {
         if (isOn) {

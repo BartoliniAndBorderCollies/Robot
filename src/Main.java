@@ -35,7 +35,8 @@ public class Main {
                 case 2 -> robocop.robotOff();
                 case 3 -> robocop.charger();
                 case 4 -> robocop.chargeRobot();
-                case 5 -> {
+                case 5 -> robocop.unplugRobot();
+                case 6 -> {
 
                     System.out.println("""
                             To move the robot you must type the following commands:
@@ -54,8 +55,8 @@ public class Main {
                         robocop.moveRobot(command);
                     }
                 }
-                case 6 -> robocop.skipTheTurn();
-                case 7 -> {
+                case 7 -> robocop.skipTheTurn();
+                case 8 -> {
                     System.out.println("Application is closing.");
                     repeat = false;
                 }
