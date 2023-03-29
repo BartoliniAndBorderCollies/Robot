@@ -5,7 +5,7 @@ public class Robot {
     private boolean isOn = true;
     private boolean isChargerCreate;
 
-    private boolean isPlugged;
+    private boolean isPlugged = true;
 
     public void setPlugged(boolean plugged) {
         isPlugged = plugged;
@@ -98,7 +98,7 @@ public class Robot {
         }
     }
 
-    public boolean chargeRobot() {
+    public void chargeRobot() {
         checkIfOn();
         if (isChargerCreate && !checkIfOn()) {
             if (energyLevel < 100) {
@@ -110,11 +110,9 @@ public class Robot {
                 energyLevel = 100;
                 System.out.println("Battery is fully charged and cannot exceed 100%");
             }
-            return true;
         } else if (!isChargerCreate) {
             System.out.println("You must create a charger first.");
         }
-        return false;
     }
 
     public void unplugRobot() {
@@ -132,13 +130,18 @@ public class Robot {
         return false;
     }
 
+    public boolean checkIfBeingCharged() {
+        if(isPlugged){
+            System.out.println("Robot is plugged and it cannot be turned on. Unplug the robot first. ");
+            return true;
+        }return false;
+    }
+
     public void robotOn() {
-        if (!checkIfOn()) {
+        if (!checkIfOn() && !checkIfBeingCharged()) {
             setOn(true);
             System.out.println("Robot is now on.");
             System.out.println();
-        } else {
-            System.out.println("You have to unplug the robot from the charger.");
         }
     }
 
