@@ -70,6 +70,7 @@ public class Robot {
     public void unplugRobot() {
         isPlugged = false;
         System.out.println("Robot has been unplugged from the charger.");
+
     }
 
     public boolean checkIfOn() {

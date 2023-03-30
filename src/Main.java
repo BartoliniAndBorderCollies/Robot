@@ -8,7 +8,7 @@ public class Main {
 //         "Robot has been unplugged from the charger."
 //    Ale on nie był podłączony, to jak może być odłączony?
 //     2. samo posiadanie ładowarki powoduje, że robot się ładuje.
-//   3. klikniecie 4 czyli plug in the robot nie zwraca zadnej wiadomosci, ani czy ładuje, ani czy jest on wlaczony.
+//   3. klikniecie 4 czyli plug in the robot nie zwraca wiadomości czy ładuje.
 //
 //
 

@@ -10,11 +10,18 @@ public class Charger {
 
     public void chargeRobot(Robot robot) {
         if (robot.checkIfOn()) {
+            System.out.println("Robot must be turned off.");
             return;
-        }try {
-            robot.setEnergyLevel(robot.getEnergyLevel() + 10);
-        } catch(Exception e) {
-            System.out.println("");
+        }
+        if (chargerExist) {
+            try {
+                robot.setEnergyLevel(robot.getEnergyLevel() + 10);
+                System.out.println("Robot is being charged.");
+            } catch (Exception e) {
+                System.out.println("");
+            }
+        }else {
+            System.out.println("Create charger first.");
         }
     }
     
