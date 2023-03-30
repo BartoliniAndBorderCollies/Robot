@@ -3,7 +3,6 @@ public class Robot {
     private int energyLevel = 100;
     private String robotName;
     private boolean isOn = true;
-    private boolean isPlugged;
 
     public void setEnergyLevel(int energyLevel) throws Exception {
         if (energyLevel > 100) {
@@ -67,29 +66,14 @@ public class Robot {
         }
     }
 
-    public void unplugRobot() {
-        isPlugged = false;
-        System.out.println("Robot has been unplugged from the charger.");
-
-    }
-
     public boolean checkIfOn() {
         return isOn;
     }
 
-    public boolean checkIfBeingCharged() {
-        if (isPlugged) {
-            System.out.println("Robot is plugged and it cannot be turned on. Unplug the robot first. ");
-            return true;
-        }
-        return false;
-    }
-
     public void robotOn() {
-        if (!checkIfOn() && !checkIfBeingCharged()) {
             isOn = true;
             System.out.println("Robot is now on.\n");
-        }
+
     }
 
     public void robotOff() {

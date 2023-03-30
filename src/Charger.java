@@ -2,7 +2,19 @@
 
 public class Charger {
     private Robot robot;
-    private boolean chargerExist;
+    public Robot unplugRobot() {
+        Robot robotToReturn = robot; //TODO: tego nie kumam co to za cuda?
+        robot = null;
+        System.out.println("Robot has been unplugged.");
+        return robotToReturn;
+    }
+    public void plugInRobot(Robot robot) {
+        this.robot = robot;
+    }
+
+    public Robot getRobot() {
+        return robot;
+    }
 
     public void setRobot(Robot robot) {
         this.robot = robot;
@@ -13,24 +25,13 @@ public class Charger {
             System.out.println("Robot must be turned off.");
             return;
         }
-        if (chargerExist) {
+
             try {
                 robot.setEnergyLevel(robot.getEnergyLevel() + 10);
                 System.out.println("Robot is being charged.");
             } catch (Exception e) {
-                System.out.println("");
+                System.out.println("Energy level cannot exceed 100%. ");
             }
-        }else {
-            System.out.println("Create charger first.");
-        }
     }
-    
-    public void createCharger() {
-        if (chargerExist) {
-            System.out.println("Charger already exist.");
-        } else {
-            System.out.println("Charger has been created.");
-            chargerExist=true;
-        }
-    }
+
 }

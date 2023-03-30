@@ -6,6 +6,8 @@ public class TestMain {
 
         charger.setRobot(robot);
 
+        charger.setRobot(null);
+
 
 
     }

@@ -4,16 +4,6 @@ import java.util.Scanner;
 public class Main {
 
 
-//TODO:1. jak klikasz 5 to pojawia sie komunikat:
-//         "Robot has been unplugged from the charger."
-//    Ale on nie był podłączony, to jak może być odłączony?
-//     2. samo posiadanie ładowarki powoduje, że robot się ładuje.
-//   3. klikniecie 4 czyli plug in the robot nie zwraca wiadomości czy ładuje.
-//
-//
-
-
-
     public static void main(String[] args) {
 
         Robot robocop = new Robot("Robocopy");
@@ -47,12 +37,16 @@ public class Main {
             switch (response) {
                 case 1 -> robocop.robotOn();
                 case 2 -> robocop.robotOff();
-                case 3 -> charger.createCharger();
+                case 3 -> {
+                    charger = new Charger();
+                    System.out.println("Charger has been created. ");
+                }
+
                 case 4 -> {
-                    charger.setRobot(robocop);
+                    charger.plugInRobot(robocop);
                     charger.chargeRobot(robocop);
                 }
-                case 5 -> robocop.unplugRobot();
+                case 5 -> charger.unplugRobot();
                 case 6 -> {
 
                     System.out.println("""
