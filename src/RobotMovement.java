@@ -1,30 +1,18 @@
 public enum RobotMovement {
-    STEP_LEFT, STEP_RIGHT, LEFT_HANDE_MOVE, RIGHT_HAND_MOVE, JUMP;
+    STEP_LEFT(20),
+    STEP_RIGHT(20),
+    LEFT_HANDE_MOVE(10),
+    RIGHT_HAND_MOVE(10),
+    JUMP(35);
 
+    private final int moveCost;
+//    private final String name;
 
-    private final int stepLeftConsumption = 20;
-    private final int stepRightConsumption = 20;
-    private final int leftHandConsumption = 10;
-    private final int rightHandConsumption = 10;
-    private final int jumpConsumption = 35;
-
-    public int getStepLeftConsumption() {
-        return stepLeftConsumption;
+    RobotMovement(int moveCost) {
+        this.moveCost = moveCost;
     }
 
-    public int getStepRightConsumption() {
-        return stepRightConsumption;
-    }
-
-    public int getLeftHandConsumption() {
-        return leftHandConsumption;
-    }
-
-    public int getRightHandConsumption() {
-        return rightHandConsumption;
-    }
-
-    public int getJumpConsumption() {
-        return jumpConsumption;
+    public int getMoveCost() {
+        return moveCost;
     }
 }
